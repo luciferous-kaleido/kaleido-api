@@ -29,6 +29,7 @@ deploy-quadlet: check-secret create-quadlet
 	mkdir -p "$$HOME/.config/containers/systemd"
 	cp dist/quadlet/* "$$HOME/.config/containers/systemd/"
 	systemctl --user daemon-reload
+	sleep 10
 	@systemctl --user list-unit-files | grep -q '^kaleido-api-nginx\.service' || { \
 		echo "Error: kaleido-api-nginx.service was not generated" >&2; \
 		exit 1; \
