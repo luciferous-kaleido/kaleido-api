@@ -1,0 +1,22 @@
+[Unit]
+Description=Cloudflare Tunnel connector
+Requires=kaleido-api-nginx.service
+After=kaleido-api-nginx.service
+
+[Container]
+Image=docker.io/cloudflare/cloudflared:latest
+ContainerName=kaleido-api-cloudflared
+Network=kaleido-api.network
+
+Secret=cf_tunnel_token,type=mount,target=/run/secrets/cf_tunnel_token
+
+Exec=tunnel --no-autoupdate run --token-file /run/secrets/cf_tunnel_token
+
+NoNewPrivileges=true
+
+[Service]
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
