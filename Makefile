@@ -12,7 +12,8 @@ register-secret:
 		echo "Error: CF_TUNNEL_TOKEN is not set" >&2; \
 		exit 1; \
 	fi; \
-	printf '%s' "$$CF_TUNNEL_TOKEN" | podman secret create --replace cf_tunnel_token -
+	podman secret rm cf_tunnel_token 2>/dev/null || true; \
+	printf '%s' "$$CF_TUNNEL_TOKEN" | podman secret create cf_tunnel_token -
 
 deploy-quadlet: check-secret create-quadlet
 	mkdir -p "$$HOME/.config/containers/systemd"
