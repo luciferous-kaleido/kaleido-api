@@ -16,9 +16,27 @@ register-secret:
 	printf '%s' "$$CF_TUNNEL_TOKEN" | podman secret create cf_tunnel_token -
 
 deploy-quadlet: check-secret create-quadlet
+	@for file in \
+		kaleido-api-content.volume \
+		kaleido-api-nginx.container \
+		kaleido-api.network \
+		kaleido-api-cloudflared.container; do \
+		if [ ! -f "dist/quadlet/$$file" ]; then \
+			echo "Error: $$file was not generated" >&2; \
+			exit 1; \
+		fi; \
+	done
 	mkdir -p "$$HOME/.config/containers/systemd"
 	cp dist/quadlet/* "$$HOME/.config/containers/systemd/"
 	systemctl --user daemon-reload
+	@systemctl --user list-unit-files | grep -q '^kaleido-api-nginx\.service' || { \
+		echo "Error: kaleido-api-nginx.service was not generated" >&2; \
+		exit 1; \
+	}
+	@systemctl --user list-unit-files | grep -q '^kaleido-api-cloudflared\.service' || { \
+		echo "Error: kaleido-api-cloudflared.service was not generated" >&2; \
+		exit 1; \
+	}
 
 .PHONY: \
 	create-quadlet \

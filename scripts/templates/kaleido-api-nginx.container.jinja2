@@ -4,8 +4,7 @@ Description=nginx behind Cloudflare Tunnel
 [Container]
 Image=docker.io/library/nginx:alpine
 ContainerName=kaleido-api-nginx
-Network=kaleido-api.network
-NetworkAlias=nginx
+Network=kaleido-api.network:alias=nginx
 
 Volume={{ volume_dir }}:/etc/nginx/conf.d:ro
 Volume=kaleido-api-content.volume:/usr/share/nginx/html:ro
