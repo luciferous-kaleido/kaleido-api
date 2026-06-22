@@ -15,11 +15,11 @@ app = FastAPI(
 @app.get("/hello")
 def hello():
     create_data()
-    return {"Hello": "World V3"}
+    return {"Hello": "World V4"}
 
 
 def create_data():
-    file_path = "/app/data/count.json"
+    file_path = "/app/data/statics/count.json"
     try:
         with open(file_path) as f:
             data: dict = json.load(f)
