@@ -28,7 +28,7 @@ def create_data():
 
     data["count"] = data["count"] + 1
 
-    with NamedTemporaryFile("w", encoding="utf-8", dir="/tmp", delete=False) as f:
+    with NamedTemporaryFile("w", encoding="utf-8", dir="/app/data", delete=False) as f:
         temp_path = Path(f.name)
         json.dump(data, f, ensure_ascii=False)
         f.flush()
