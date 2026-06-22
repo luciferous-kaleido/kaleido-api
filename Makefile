@@ -56,9 +56,19 @@ deploy-quadlet: check-secret create-quadlet
 list-quadlet-unit-files:
 	systemctl --user list-unit-files | grep "^kaleido-api"
 
+start:
+	systemctl --user enable --now kaleido-api-nginx.service
+	systemctl --user enable --now kaleido-api-cloudflared.service
+
+fmt-python:
+	uv run isort src/ scripts/
+	uv run black src/ scripts/
+
 .PHONY: \
 	create-quadlet \
 	check-secret \
 	register-secret \
 	deploy-quadlet \
+	list-quadlet-unit-files \
+	start \
 	message

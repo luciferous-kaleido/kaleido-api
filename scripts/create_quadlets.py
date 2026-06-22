@@ -1,6 +1,7 @@
-from pathlib import Path
 from os import makedirs
+from pathlib import Path
 from shutil import copy
+
 from jinja2 import Template
 
 
