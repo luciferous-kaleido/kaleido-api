@@ -2,7 +2,7 @@
 Description=kaleido-api service
 
 [Container]
-Image=kaleido-api-app.build
+Image=localhost/kaleido-api-app:latest
 ContainerName=kaleido-api-app
 Network=kaleido-api.network:alias=app
 
