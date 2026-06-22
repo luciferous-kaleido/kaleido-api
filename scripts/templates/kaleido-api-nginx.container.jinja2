@@ -2,6 +2,8 @@
 Description=nginx behind Cloudflare Tunnel
 Requires=kaleido-api.network
 Requires=kaleido-api-content.volume
+Requires=kaleido-api-app.service
+After=kaleido-api-app.service
 
 [Container]
 Image=docker.io/library/nginx:alpine

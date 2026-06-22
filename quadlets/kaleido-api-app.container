@@ -1,0 +1,18 @@
+[Unit]
+Description=kaleido-api service
+Requires=kaleido-api.network
+Requires=kaleido-api-content.volume
+
+[Container]
+Image=kaleido-api.build
+ContainerName=kaleido-api-app
+Network=kaleido-api.network:alias=app
+
+UserNS=keep-id:uid=1000,gid=1000
+Volume=kaleido-api-content.volume:/app/data
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

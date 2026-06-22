@@ -1,0 +1,10 @@
+[Unit]
+Description=Build kaleido-api image
+
+[Build]
+ImageTag=localhost/kaleido-api-app:latest
+SetWorkingDirectory=/Users/yuta/space/projects/luciferous-kaleido/00_repos/kaleido-api
+File=Dockerfile
+
+[Service]
+TimeoutStartSec=900

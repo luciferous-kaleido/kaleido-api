@@ -20,6 +20,8 @@ deploy-quadlet: check-secret create-quadlet
 		kaleido-api-content.volume \
 		kaleido-api-nginx.container \
 		kaleido-api.network \
+		kaleido-api-app.build \
+		kaleido-api-app.container \
 		kaleido-api-cloudflared.container; do \
 		if [ ! -f "dist/quadlet/$$file" ]; then \
 			echo "Error: $$file was not generated" >&2; \
@@ -29,7 +31,19 @@ deploy-quadlet: check-secret create-quadlet
 	mkdir -p "$$HOME/.config/containers/systemd"
 	cp dist/quadlet/* "$$HOME/.config/containers/systemd/"
 	systemctl --user daemon-reload
+	@echo "start wait"
 	sleep 10
+	@echo "wait 10sec"
+	sleep 10
+	@echo "wait 20sec"
+	sleep 10
+	@echo "wait 30sec"
+	sleep 10
+	@echo "wait 40sec"
+	sleep 10
+	@echo "wait 50sec"
+	sleep 10
+	@echo "wait 60sec"
 	@systemctl --user list-unit-files | grep -q '^kaleido-api-nginx\.service' || { \
 		echo "Error: kaleido-api-nginx.service was not generated" >&2; \
 		exit 1; \
@@ -38,6 +52,9 @@ deploy-quadlet: check-secret create-quadlet
 		echo "Error: kaleido-api-cloudflared.service was not generated" >&2; \
 		exit 1; \
 	}
+
+list-quadlet-unit-files:
+	systemctl --user list-unit-files | grep "^kaleido-api"
 
 .PHONY: \
 	create-quadlet \
