@@ -50,6 +50,9 @@ start:
 	systemctl --user enable --now kaleido-api-nginx.service
 	systemctl --user enable --now kaleido-api-cloudflared.service
 
+restart:
+	systemctl --user restart kaleido-api-app.service kaleido-api-nginx.service kaleido-api-cloudflared.service
+
 fmt-python:
 	uv run isort src/ scripts/
 	uv run black src/ scripts/

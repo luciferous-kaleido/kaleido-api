@@ -15,7 +15,7 @@ app = FastAPI(
 @app.get("/hello")
 def hello():
     create_data()
-    return {"Hello": "World"}
+    return {"Hello": "World V3"}
 
 
 def create_data():
