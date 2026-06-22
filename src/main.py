@@ -15,7 +15,7 @@ app = FastAPI(
 @app.get("/hello")
 def hello():
     create_data()
-    return {"Hello": "World V4"}
+    return {"Hello": "World V5"}
 
 
 def create_data():
@@ -34,4 +34,5 @@ def create_data():
         f.flush()
         os.fsync((f.fileno()))
 
+    os.chmod(temp_path, 0o644)
     os.replace(temp_path, file_path)
