@@ -1,6 +1,5 @@
 [Unit]
 Description=Cloudflare Tunnel connector
-Requires=kaleido-api.network
 Requires=kaleido-api-nginx.service
 After=kaleido-api-nginx.service
 
