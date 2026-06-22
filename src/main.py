@@ -1,3 +1,8 @@
+import json
+import os
+from pathlib import Path
+from tempfile import NamedTemporaryFile
+
 from fastapi import FastAPI
 
 app = FastAPI(
@@ -9,4 +14,24 @@ app = FastAPI(
 
 @app.get("/hello")
 def hello():
+    create_data()
     return {"Hello": "World"}
+
+
+def create_data():
+    file_path = "/app/data/count.json"
+    try:
+        with open(file_path) as f:
+            data: dict = json.load(f)
+    except FileNotFoundError:
+        data: dict = {"count": 0}
+
+    data["count"] = data["count"] + 1
+
+    with NamedTemporaryFile("w", encoding="utf-8", dir="/tmp", delete=False) as f:
+        temp_path = Path(f.name)
+        json.dump(data, f, ensure_ascii=False)
+        f.flush()
+        os.fsync((f.fileno()))
+
+    os.replace(temp_path, file_path)
