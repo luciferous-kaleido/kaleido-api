@@ -8,6 +8,7 @@ Network=kaleido-api.network:alias=app
 
 UserNS=keep-id:uid=1000,gid=1000
 Volume=kaleido-api-content.volume:/app/data
+Volume=kaleido-api-log.volume:/app/logs
 
 NoNewPrivileges=true
 ReadOnly=true

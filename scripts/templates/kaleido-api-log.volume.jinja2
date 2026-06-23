@@ -1,0 +1,10 @@
+[Unit]
+Description=log volume for kaleido-api
+
+[Volume]
+VolumeName=kaleido-api-log
+Driver=local
+Device={{ log_dir }}
+Type=none
+Options=bind
+Label=app=kaleido-api
