@@ -4,7 +4,7 @@ Wants=kaleido-api-app.service
 After=kaleido-api-app.service
 
 [Container]
-Image=docker.io/library/nginx:alpine
+Image=docker.io/library/nginx:1.31.2-alpine
 ContainerName=kaleido-api-nginx
 Network=kaleido-api.network:alias=nginx
 

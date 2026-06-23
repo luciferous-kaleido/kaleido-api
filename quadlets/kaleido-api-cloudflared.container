@@ -4,7 +4,7 @@ Requires=kaleido-api-nginx.service
 After=kaleido-api-nginx.service
 
 [Container]
-Image=docker.io/cloudflare/cloudflared:latest
+Image=docker.io/cloudflare/cloudflared:2026.6.1
 ContainerName=kaleido-api-cloudflared
 Network=kaleido-api.network
 
