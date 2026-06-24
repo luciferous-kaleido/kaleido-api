@@ -1,0 +1,5 @@
+DEFAULT_ENVIRONMENT_NAME = "development"
+
+LOG_PATH = "/app/logs/app.log"
+LOG_BACKUP_COUNT = 2
+LOG_MAX_BYTES = 104857600  # 1024 * 1024 * 100

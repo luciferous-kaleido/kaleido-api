@@ -18,6 +18,11 @@ def hello():
     return {"Hello": "World V6"}
 
 
+@app.get("/error")
+def error():
+    raise Exception("test")
+
+
 def create_data():
     file_path = "/app/data/statics/count.json"
     try:

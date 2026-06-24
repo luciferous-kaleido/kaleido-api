@@ -10,6 +10,8 @@ UserNS=keep-id:uid=1000,gid=1000
 Volume=kaleido-api-content.volume:/app/data
 Volume=kaleido-api-log.volume:/app/logs
 
+Environment=ENVIRONMENT_NAME=production
+
 NoNewPrivileges=true
 ReadOnly=true
 Tmpfs=/tmp
